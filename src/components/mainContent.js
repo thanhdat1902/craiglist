@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./header"
+import Header from "./header";
 import ProductList from "./listProduct";
 export default function MainContent() {
   return (
@@ -8,12 +8,14 @@ export default function MainContent() {
         id="search-results-page-1"
         className="results cl-results-page"
         style={{
+          position: "absolute",
+          left: "22vw",
           border: "0px",
           margin: "0px 8px",
           padding: "0px",
           minHeight: "10px",
           overflow: "hidden",
-          width: "80vw"
+          width: "70vw",
         }}
       >
         <Header />

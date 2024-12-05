@@ -65,7 +65,12 @@ export default function PriceFilter() {
         <input name="max_price" type="hidden" style={{ marginLeft: "5px" }} />
         <div
           className="cl-bar-chart-widget"
-          style={{ margin: "0px", border: "0px", padding: "0px" }}
+          style={{
+            margin: "0px",
+            border: "0px",
+            padding: "0px",
+            cursor: "pointer",
+          }}
         >
           <div
             className="cl-bar-chart-control"
