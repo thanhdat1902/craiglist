@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function OtherFilter({ isFurnished, setIsFurnished }) {
+export default function OtherFilter({
+  isFurnished,
+  setIsFurnished,
+  isPetFriendly,
+  setIsPetFriendly,
+}) {
+  const [isDogFriendly, setIsDogFriendly] = useState(false);
+  const [isCatFriendly, setIsCatFriendly] = useState(false);
+
+  useEffect(() => {
+    if (!setIsPetFriendly) return;
+
+    if (isPetFriendly && !isDogFriendly && !isCatFriendly) {
+      setIsPetFriendly(false);
+    } else if (!isPetFriendly && (isDogFriendly || isCatFriendly)) {
+      setIsPetFriendly(true);
+    }
+  }, [isDogFriendly, isCatFriendly]);
+
+  useEffect(() => {
+    if (!setIsPetFriendly) return;
+
+    if (isPetFriendly) {
+      if (!(isCatFriendly || isDogFriendly)) {
+        setIsCatFriendly(true);
+        setIsDogFriendly(true);
+      }
+    }
+  }, [isPetFriendly]);
+
   return (
     <>
       <div
@@ -27,7 +56,8 @@ export default function OtherFilter({ isFurnished, setIsFurnished }) {
           <input
             name="pets_cat"
             type="checkbox"
-            value="1"
+            checked={isCatFriendly}
+            onChange={() => setIsCatFriendly((prev) => !prev)}
             style={{
               marginLeft: "0px",
               cursor: "pointer",
@@ -50,7 +80,8 @@ export default function OtherFilter({ isFurnished, setIsFurnished }) {
           <input
             name="pets_dog"
             type="checkbox"
-            value="1"
+            checked={isDogFriendly}
+            onChange={() => setIsDogFriendly((prev) => !prev)}
             style={{
               marginLeft: "0px",
               cursor: "pointer",

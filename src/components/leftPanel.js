@@ -11,6 +11,7 @@ export default function LeftPanelFilter() {
   const [isOneBedroom, setIsOneBedroom] = useState(false);
   const [isTwoBedroom, setIsTwoBedroom] = useState(false);
   const [isFurnished, setIsFurnished] = useState(false);
+  const [isPetFriendly, setIsPetFriendly] = useState(false);
 
   return (
     <div
@@ -33,8 +34,8 @@ export default function LeftPanelFilter() {
       >
         apartments /​ housing for rent
       </h1>
-      <CheckBoxFilter />
-      <MaplocationFilter />
+      {/* <CheckBoxFilter /> */}
+      {/* <MaplocationFilter /> */}
       <PriceFilter />
       <div>
         <div style={{ fontSize: 11, marginTop: 10 }}>BEDROOMS</div>
@@ -53,7 +54,12 @@ export default function LeftPanelFilter() {
         <div style={{ fontSize: 11, marginTop: 10 }}>SQ FT</div>
         <MinMaxComponent />
       </div>
-      <OtherFilter isFurnished={isFurnished} setIsFurnished={setIsFurnished} />
+      <OtherFilter
+        isFurnished={isFurnished}
+        setIsFurnished={setIsFurnished}
+        isPetFriendly={isPetFriendly}
+        setIsPetFriendly={setIsPetFriendly}
+      />
       <RelatedSearch
         isOneBedroom={isOneBedroom}
         setIsOneBedroom={setIsOneBedroom}
@@ -61,6 +67,8 @@ export default function LeftPanelFilter() {
         setIsTwoBedroom={setIsTwoBedroom}
         isFurnished={isFurnished}
         setIsFurnished={setIsFurnished}
+        isPetFriendly={isPetFriendly}
+        setIsPetFriendly={setIsPetFriendly}
       />
     </div>
   );

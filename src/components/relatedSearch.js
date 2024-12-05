@@ -7,10 +7,12 @@ export default function RelatedSearch({
   setIsTwoBedroom,
   isFurnished,
   setIsFurnished,
+  isPetFriendly,
+  setIsPetFriendly,
 }) {
-  const [isShowRelatedSearch, setIsShowRelatedSearch] = useState(false);
+  const [isShowRelatedSearch, setIsShowRelatedSearch] = useState(true);
   const handleClickShowRelatedSearch = () => {
-    setIsShowRelatedSearch(!isShowRelatedSearch);
+    // setIsShowRelatedSearch(!isShowRelatedSearch);
   };
   const handleClickRelatedSearch = (relatedSearchString) => {
     // TODO: Not refresh page and keep filter
@@ -20,6 +22,8 @@ export default function RelatedSearch({
       setIsTwoBedroom(true);
     } else if (relatedSearchString === "furnished") {
       setIsFurnished(true);
+    } else if (relatedSearchString === "petFriendly") {
+      setIsPetFriendly(true);
     }
   };
   const links = [
@@ -53,6 +57,11 @@ export default function RelatedSearch({
     {
       label: "Pet friendly apartments for rent",
       href: "https://losangeles.craigslist.org/search/pet-friendly-apartment",
+      style: {
+        fontWeight: isPetFriendly ? "bolder" : "normal",
+        cursor: isPetFriendly ? "default" : "pointer",
+      },
+      relatedSearchString: "petFriendly",
     },
   ];
   return (
@@ -117,7 +126,7 @@ export default function RelatedSearch({
               fontFamily: "icomoon",
             }}
           />
-          <span className="label">related searches</span>
+          <span className="label">filter presets</span>
         </button>
         {isShowRelatedSearch && (
           <div
