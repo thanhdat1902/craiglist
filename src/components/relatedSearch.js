@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
-export default function RelatedSearch() {
+export default function RelatedSearch({ isOneBedroom, setIsOneBedroom }) {
   const [isShowRelatedSearch, setIsShowRelatedSearch] = useState(false);
   const handleClickShowRelatedSearch = () => {
     setIsShowRelatedSearch(!isShowRelatedSearch);
   };
-  const handleClickRelatedSearch = () => {
+  const handleClickRelatedSearch = (relatedSearchString) => {
     // TODO: Not refresh page and keep filter
-    
-  }
+    if (relatedSearchString === "oneBedroom") {
+      setIsOneBedroom(true);
+    }
+  };
   const links = [
     {
       label: "Studio apartments",
@@ -17,6 +19,11 @@ export default function RelatedSearch() {
     {
       label: "One bedroom apartments for rent",
       href: "https://losangeles.craigslist.org/search/one-bedroom-apartment",
+      style: {
+        fontWeight: isOneBedroom ? "bolder" : "normal",
+        cursor: isOneBedroom ? "default" : "pointer",
+      },
+      relatedSearchString: "oneBedroom",
     },
     {
       label: "Two bedroom apartments for rent",
@@ -114,7 +121,6 @@ export default function RelatedSearch() {
               <a
                 key={index}
                 className="cl-app-anchor text-only"
-                href={link.href}
                 tabIndex="0"
                 style={{
                   textDecoration: "none",
@@ -129,11 +135,17 @@ export default function RelatedSearch() {
                   padding: "3px 3px 3px 0px",
                   display: "block",
                 }}
-                onClick={handleClickRelatedSearch}
               >
                 <span
                   className="label"
-                  style={{ padding: "0px", display: "inline-block" }}
+                  onClick={() =>
+                    handleClickRelatedSearch(link.relatedSearchString)
+                  }
+                  style={{
+                    padding: "0px",
+                    display: "inline-block",
+                    ...link.style,
+                  }}
                 >
                   {link.label}
                 </span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CheckBoxFilter from "./checkBoxFilter";
 import MaplocationFilter from "./mapLocationFilter";
 import PriceFilter from "./priceFilter";
@@ -8,6 +8,9 @@ import RelatedSearch from "./relatedSearch";
 import OtherFilter from "./otherFilter";
 
 export default function LeftPanelFilter() {
+  const [isOneBedroom, setIsOneBedroom] = useState(false);
+  const [isFurnished, setIsFurnished] = useState(false);
+
   return (
     <div
       style={{
@@ -34,7 +37,10 @@ export default function LeftPanelFilter() {
       <PriceFilter />
       <div>
         <div style={{ fontSize: 11, marginTop: 10 }}>BEDROOMS</div>
-        <MinMaxComponent />
+        <MinMaxComponent
+          isOneBedroom={isOneBedroom}
+          setIsOneBedroom={setIsOneBedroom}
+        />
       </div>
       <div>
         <div style={{ fontSize: 11, marginTop: 10 }}>BATHROOMS</div>
@@ -45,8 +51,10 @@ export default function LeftPanelFilter() {
         <MinMaxComponent />
       </div>
       <OtherFilter />
-      <CalendarComponent />
-      <RelatedSearch />
+      <RelatedSearch
+        isOneBedroom={isOneBedroom}
+        setIsOneBedroom={setIsOneBedroom}
+      />
     </div>
   );
 }

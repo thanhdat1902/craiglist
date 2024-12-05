@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function MinMaxComponent() {
+export default function MinMaxComponent({ isOneBedroom, setIsOneBedroom }) {
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
+
+  useEffect(() => {
+    if (!setIsOneBedroom) return;
+
+    if (isOneBedroom && !(min === "1" && max === "1")) {
+      setIsOneBedroom(false);
+    } else if (!isOneBedroom && min === "1" && max === "1") {
+      setIsOneBedroom(true);
+    }
+  }, [min, max]);
+
+  useEffect(() => {
+    if (!setIsOneBedroom) return;
+
+    if (isOneBedroom) {
+      setMin("1");
+      setMax("1");
+    }
+  }, [isOneBedroom]);
+
   return (
     <>
       <div
@@ -25,6 +47,8 @@ export default function MinMaxComponent() {
           type="tel"
           placeholder="min"
           title="whole number, no letters or symbols"
+          value={min}
+          onChange={(e) => setMin(e.target.value)}
           style={{
             marginLeft: "0px",
             padding: "3px",
@@ -47,6 +71,8 @@ export default function MinMaxComponent() {
           type="tel"
           placeholder="max"
           title="whole number, no letters or symbols"
+          value={max}
+          onChange={(e) => setMax(e.target.value)}
           style={{
             marginLeft: "5px",
             padding: "3px",
