@@ -9,6 +9,7 @@ import OtherFilter from "./otherFilter";
 
 export default function LeftPanelFilter() {
   const [isOneBedroom, setIsOneBedroom] = useState(false);
+  const [isTwoBedroom, setIsTwoBedroom] = useState(false);
   const [isFurnished, setIsFurnished] = useState(false);
 
   return (
@@ -40,6 +41,8 @@ export default function LeftPanelFilter() {
         <MinMaxComponent
           isOneBedroom={isOneBedroom}
           setIsOneBedroom={setIsOneBedroom}
+          isTwoBedroom={isTwoBedroom}
+          setIsTwoBedroom={setIsTwoBedroom}
         />
       </div>
       <div>
@@ -50,10 +53,14 @@ export default function LeftPanelFilter() {
         <div style={{ fontSize: 11, marginTop: 10 }}>SQ FT</div>
         <MinMaxComponent />
       </div>
-      <OtherFilter />
+      <OtherFilter isFurnished={isFurnished} setIsFurnished={setIsFurnished} />
       <RelatedSearch
         isOneBedroom={isOneBedroom}
         setIsOneBedroom={setIsOneBedroom}
+        isTwoBedroom={isTwoBedroom}
+        setIsTwoBedroom={setIsTwoBedroom}
+        isFurnished={isFurnished}
+        setIsFurnished={setIsFurnished}
       />
     </div>
   );

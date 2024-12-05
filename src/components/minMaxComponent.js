@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-export default function MinMaxComponent({ isOneBedroom, setIsOneBedroom }) {
+export default function MinMaxComponent({
+  isOneBedroom,
+  setIsOneBedroom,
+  isTwoBedroom,
+  setIsTwoBedroom,
+}) {
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
 
@@ -22,6 +27,25 @@ export default function MinMaxComponent({ isOneBedroom, setIsOneBedroom }) {
       setMax("1");
     }
   }, [isOneBedroom]);
+
+  useEffect(() => {
+    if (!setIsTwoBedroom) return;
+
+    if (isTwoBedroom && !(min === "2" && max === "2")) {
+      setIsTwoBedroom(false);
+    } else if (!isTwoBedroom && min === "2" && max === "2") {
+      setIsTwoBedroom(true);
+    }
+  }, [min, max]);
+
+  useEffect(() => {
+    if (!setIsTwoBedroom) return;
+
+    if (isTwoBedroom) {
+      setMin("2");
+      setMax("2");
+    }
+  }, [isTwoBedroom]);
 
   return (
     <>

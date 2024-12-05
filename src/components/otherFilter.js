@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function OtherFilter() {
+export default function OtherFilter({ isFurnished, setIsFurnished }) {
   return (
     <>
       <div
@@ -73,7 +73,8 @@ export default function OtherFilter() {
           <input
             name="is_furnished"
             type="checkbox"
-            value="1"
+            checked={isFurnished}
+            onChange={() => setIsFurnished((prev) => !prev)}
             style={{
               marginLeft: "0px",
               cursor: "pointer",

@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-export default function RelatedSearch({ isOneBedroom, setIsOneBedroom }) {
+export default function RelatedSearch({
+  isOneBedroom,
+  setIsOneBedroom,
+  isTwoBedroom,
+  setIsTwoBedroom,
+  isFurnished,
+  setIsFurnished,
+}) {
   const [isShowRelatedSearch, setIsShowRelatedSearch] = useState(false);
   const handleClickShowRelatedSearch = () => {
     setIsShowRelatedSearch(!isShowRelatedSearch);
@@ -9,13 +16,13 @@ export default function RelatedSearch({ isOneBedroom, setIsOneBedroom }) {
     // TODO: Not refresh page and keep filter
     if (relatedSearchString === "oneBedroom") {
       setIsOneBedroom(true);
+    } else if (relatedSearchString === "twoBedroom") {
+      setIsTwoBedroom(true);
+    } else if (relatedSearchString === "furnished") {
+      setIsFurnished(true);
     }
   };
   const links = [
-    {
-      label: "Studio apartments",
-      href: "https://losangeles.craigslist.org/search/studio-apartment",
-    },
     {
       label: "One bedroom apartments for rent",
       href: "https://losangeles.craigslist.org/search/one-bedroom-apartment",
@@ -28,14 +35,20 @@ export default function RelatedSearch({ isOneBedroom, setIsOneBedroom }) {
     {
       label: "Two bedroom apartments for rent",
       href: "https://losangeles.craigslist.org/search/two-bedroom-apartment",
+      style: {
+        fontWeight: isTwoBedroom ? "bolder" : "normal",
+        cursor: isTwoBedroom ? "default" : "pointer",
+      },
+      relatedSearchString: "twoBedroom",
     },
     {
       label: "Furnished apartments for rent",
       href: "https://losangeles.craigslist.org/search/furnished-apartment",
-    },
-    {
-      label: "Houses for rent",
-      href: "https://losangeles.craigslist.org/search/house-for-rent",
+      style: {
+        fontWeight: isFurnished ? "bolder" : "normal",
+        cursor: isFurnished ? "default" : "pointer",
+      },
+      relatedSearchString: "furnished",
     },
     {
       label: "Pet friendly apartments for rent",
