@@ -17,19 +17,20 @@ export default function RelatedSearch({
   const handleClickRelatedSearch = (relatedSearchString) => {
     // TODO: Not refresh page and keep filter
     if (relatedSearchString === "oneBedroom") {
-      setIsOneBedroom(true);
+      setIsOneBedroom((prev) => !prev);
     } else if (relatedSearchString === "twoBedroom") {
-      setIsTwoBedroom(true);
+      setIsTwoBedroom((prev) => !prev);
     } else if (relatedSearchString === "furnished") {
-      setIsFurnished(true);
+      setIsFurnished((prev) => !prev);
     } else if (relatedSearchString === "petFriendly") {
-      setIsPetFriendly(true);
+      setIsPetFriendly((prev) => !prev);
     }
   };
   const links = [
     {
       label: "One bedroom apartments for rent",
       href: "https://losangeles.craigslist.org/search/one-bedroom-apartment",
+      isActive: isOneBedroom,
       style: {
         fontWeight: isOneBedroom ? "bolder" : "normal",
         cursor: isOneBedroom ? "default" : "pointer",
@@ -39,6 +40,7 @@ export default function RelatedSearch({
     {
       label: "Two bedroom apartments for rent",
       href: "https://losangeles.craigslist.org/search/two-bedroom-apartment",
+      isActive: isTwoBedroom,
       style: {
         fontWeight: isTwoBedroom ? "bolder" : "normal",
         cursor: isTwoBedroom ? "default" : "pointer",
@@ -48,6 +50,7 @@ export default function RelatedSearch({
     {
       label: "Furnished apartments for rent",
       href: "https://losangeles.craigslist.org/search/furnished-apartment",
+      isActive: isFurnished,
       style: {
         fontWeight: isFurnished ? "bolder" : "normal",
         cursor: isFurnished ? "default" : "pointer",
@@ -57,6 +60,7 @@ export default function RelatedSearch({
     {
       label: "Pet friendly apartments for rent",
       href: "https://losangeles.craigslist.org/search/pet-friendly-apartment",
+      isActive: isPetFriendly,
       style: {
         fontWeight: isPetFriendly ? "bolder" : "normal",
         cursor: isPetFriendly ? "default" : "pointer",
@@ -140,7 +144,7 @@ export default function RelatedSearch({
             }}
           >
             {links.map((link, index) => (
-              <a
+              <label
                 key={index}
                 className="cl-app-anchor text-only"
                 tabIndex="0"
@@ -151,13 +155,20 @@ export default function RelatedSearch({
                   WebkitBoxAlign: "center",
                   alignItems: "center",
                   minHeight: "1em",
-                  color: "rgb(0, 0, 238)",
+                  // color: "rgb(0, 0, 238)",
                   cursor: "pointer",
                   margin: "3px 3px 3px 0px",
                   padding: "3px 3px 3px 0px",
                   display: "block",
                 }}
               >
+                <input
+                  type="checkbox"
+                  checked={link.isActive}
+                  onClick={() =>
+                    handleClickRelatedSearch(link.relatedSearchString)
+                  }
+                ></input>
                 <span
                   className="label"
                   onClick={() =>
@@ -171,7 +182,7 @@ export default function RelatedSearch({
                 >
                   {link.label}
                 </span>
-              </a>
+              </label>
             ))}
           </div>
         )}

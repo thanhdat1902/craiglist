@@ -10,6 +10,9 @@ const products = [
     bathrooms: 1,
     squareFeet: 1200,
     location: "Covina",
+    furnished: true,
+    isCatFriendly: true,
+    isDogFriendly: true,
   },
   {
     price: "$1,785",
@@ -20,6 +23,9 @@ const products = [
     bathrooms: 1,
     squareFeet: 385,
     location: "Van Nuys - Sherman Oaks",
+    furnished: false,
+    isCatFriendly: true,
+    isDogFriendly: true,
   },
   {
     price: "$1,572",
@@ -30,6 +36,9 @@ const products = [
     bathrooms: 1,
     squareFeet: 385,
     location: "Van Nuys - Sherman Oaks",
+    furnished: false,
+    isCatFriendly: false,
+    isDogFriendly: false,
   },
   {
     price: "$2,988",
@@ -40,6 +49,9 @@ const products = [
     bathrooms: 2,
     squareFeet: 1306,
     location: "Woodland Hills",
+    furnished: true,
+    isCatFriendly: true,
+    isDogFriendly: true,
   },
   {
     price: "$2,115",
@@ -50,6 +62,9 @@ const products = [
     bathrooms: 1,
     squareFeet: 792,
     location: "Northridge",
+    furnished: true,
+    isCatFriendly: true,
+    isDogFriendly: true,
   },
   {
     price: "$1,987",
@@ -60,98 +75,48 @@ const products = [
     bathrooms: 1,
     squareFeet: 648,
     location: "Studio City",
-  },
-  {
-    price: "$1,920",
-    image: "https://images.craigslist.org/00Y0Y_b6Kvycm1We_0jA0eK_600x450.jpg",
-    title: "Cozy 1 BR apartment in Glendale with mountain views",
-    details: "10 mins ago · 1br 800ft² · Glendale",
-  },
-  {
-    price: "$2,350",
-    image: "https://images.craigslist.org/00F0F_1KDF1QLLpY1_0vm0l2_600x450.jpg",
-    title: "Luxury 2 BR condo with pool access in Pasadena",
-    details: "12 mins ago · 2br 1200ft² · Pasadena",
-  },
-  {
-    price: "$1,630",
-    image: "https://images.craigslist.org/00V0V_lHAq1jzHvNt_0uY0kD_600x450.jpg",
-    title: "Modern Studio near Downtown LA",
-    details: "15 mins ago · Studio 450ft² · Downtown LA",
-  },
-  {
-    price: "$2,750",
-    image: "https://images.craigslist.org/00J0J_fcEePBLOun0_0g80aM_600x450.jpg",
-    title: "Spacious 3 BR townhouse with garage in Burbank",
-    details: "5 mins ago · 3br 1600ft² · Burbank",
-  },
-  {
-    price: "$1,480",
-    image: "https://images.craigslist.org/00a0a_eOGWfiwuOo4_0gw0co_600x450.jpg",
-    title: "Bright Studio with hardwood floors in Santa Monica",
-    details: "8 mins ago · Studio 500ft² · Santa Monica",
-  },
-  {
-    price: "$3,100",
-    image: "https://images.craigslist.org/00n0n_3EbdZllrihl_0jm0cM_600x450.jpg",
-    title: "Penthouse apartment with ocean view in Malibu",
-    details: "20 mins ago · 2br 1500ft² · Malibu",
-  },
-  {
-    price: "$2,100",
-    image: "https://images.craigslist.org/00V0V_9LdJ2V4LeJe_0q90hq_600x450.jpg",
-    title: "Pet-friendly 2 BR with large balcony in Culver City",
-    details: "18 mins ago · 2br 1100ft² · Culver City",
-  },
-  {
-    price: "$1,950",
-    image: "https://images.craigslist.org/00J0J_50Hk2qZKGWn_0jA0eK_600x450.jpg",
-    title: "Charming 1 BR apartment with garden access in Hollywood",
-    details: "22 mins ago · 1br 900ft² · Hollywood",
-  },
-  {
-    price: "$1,700",
-    image: "https://images.craigslist.org/01515_g4nHZVZHwSm_0jm0cU_600x450.jpg",
-    title: "Quiet Studio in Koreatown with utilities included",
-    details: "30 mins ago · Studio 400ft² · Koreatown",
-  },
-  {
-    price: "$2,700",
-    image: "https://images.craigslist.org/01515_6RMoNyTFKh2_0ak06Q_600x450.jpg",
-    title: "Modern 2 BR in Westwood, close to UCLA",
-    details: "25 mins ago · 2br 1300ft² · Westwood",
-  },
-  {
-    price: "$1,850",
-    image: "https://images.craigslist.org/01515_6RMoNyTFKh2_0ak06Q_600x450.jpg",
-    title: "Stylish 1 BR with city views in Silver Lake",
-    details: "40 mins ago · 1br 850ft² · Silver Lake",
-  },
-  {
-    price: "$2,450",
-    image: "https://images.craigslist.org/01010_cy02y70PjnP_0jA0eK_600x450.jpg",
-    title: "Newly renovated 2 BR with gym access in Marina Del Rey",
-    details: "35 mins ago · 2br 1150ft² · Marina Del Rey",
+    furnished: false,
+    isCatFriendly: true,
+    isDogFriendly: true,
   },
 ];
 
-const ProductCard = ({ price, image, title, details }) => {
+const ProductCard = ({ price, image, title, details, bedrooms, furnished }) => {
   return (
     <div style={styles.card}>
       <div style={styles.price}>{price}</div>
       <img src={image} alt={title} style={styles.image} />
       <div style={styles.title}>{title}</div>
       <div style={styles.details}>{details}</div>
+      <div>Bedrooms: {bedrooms}</div>
+      <div>{furnished ? "Furnished" : ""}</div>
+      <div></div>
     </div>
   );
 };
 
-const ProductList = () => {
+const ProductList = ({
+  isOneBedroom,
+  isTwoBedroom,
+  isFurnished,
+  isPetFriendly,
+}) => {
   return (
     <div style={styles.container}>
-      {products.map((product, index) => (
-        <ProductCard key={index} {...product} />
-      ))}
+      {products
+        .filter((product) => {
+          if (!isOneBedroom && !isTwoBedroom && !isFurnished && !isPetFriendly)
+            return true;
+          return (
+            (isOneBedroom && product.bedrooms === 1) ||
+            (isTwoBedroom && product.bedrooms === 2) ||
+            (isFurnished && product.furnished) ||
+            (isPetFriendly && (product.isCatFriendly || product.isDogFriendly))
+          );
+        })
+        .map((product, index) => (
+          <ProductCard key={index} {...product} />
+        ))}
     </div>
   );
 };

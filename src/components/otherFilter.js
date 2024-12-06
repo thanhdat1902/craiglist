@@ -27,6 +27,9 @@ export default function OtherFilter({
         setIsCatFriendly(true);
         setIsDogFriendly(true);
       }
+    } else if (isCatFriendly && isDogFriendly) {
+      setIsCatFriendly(false);
+      setIsDogFriendly(false);
     }
   }, [isPetFriendly]);
 

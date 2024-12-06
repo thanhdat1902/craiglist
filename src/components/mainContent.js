@@ -1,7 +1,17 @@
 import React from "react";
 import Header from "./header";
 import ProductList from "./listProduct";
-export default function MainContent() {
+
+export default function MainContent({
+  isOneBedroom,
+  setIsOneBedroom,
+  isTwoBedroom,
+  setIsTwoBedroom,
+  isFurnished,
+  setIsFurnished,
+  isPetFriendly,
+  setIsPetFriendly,
+}) {
   return (
     <>
       <div
@@ -19,7 +29,12 @@ export default function MainContent() {
         }}
       >
         <Header />
-        <ProductList />
+        <ProductList
+          isOneBedroom={isOneBedroom}
+          isTwoBedroom={isTwoBedroom}
+          isFurnished={isFurnished}
+          isPetFriendly={isPetFriendly}
+        />
       </div>
       <style
         dangerouslySetInnerHTML={{

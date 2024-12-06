@@ -25,6 +25,9 @@ export default function MinMaxComponent({
     if (isOneBedroom) {
       setMin("1");
       setMax("1");
+    } else if (min === "1" && max === "1") {
+      setMin("");
+      setMax("");
     }
   }, [isOneBedroom]);
 
@@ -44,6 +47,9 @@ export default function MinMaxComponent({
     if (isTwoBedroom) {
       setMin("2");
       setMax("2");
+    } else if (min === "2" && max === "2") {
+      setMin("");
+      setMax("");
     }
   }, [isTwoBedroom]);
 

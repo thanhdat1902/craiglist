@@ -7,12 +7,16 @@ import CalendarComponent from "./calendarComponent";
 import RelatedSearch from "./relatedSearch";
 import OtherFilter from "./otherFilter";
 
-export default function LeftPanelFilter() {
-  const [isOneBedroom, setIsOneBedroom] = useState(false);
-  const [isTwoBedroom, setIsTwoBedroom] = useState(false);
-  const [isFurnished, setIsFurnished] = useState(false);
-  const [isPetFriendly, setIsPetFriendly] = useState(false);
-
+export default function LeftPanelFilter({
+  isOneBedroom,
+  setIsOneBedroom,
+  isTwoBedroom,
+  setIsTwoBedroom,
+  isFurnished,
+  setIsFurnished,
+  isPetFriendly,
+  setIsPetFriendly,
+}) {
   return (
     <div
       style={{
